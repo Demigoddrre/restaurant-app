@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  frontend:
+    build: ./frontend
+    expose:
+      - "80"
+    networks:
+      - restaurant-network
+
+  backend:
+    build: ./backend
+    expose:
+      - "5000"
+    networks:
+      - restaurant-network
+    environment:
+      - DATABASE_URL=postgresql://postgres:password@db:5432/restaurant
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: restaurant
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - restaurant-network
+    ports:
+      - "5432:5432"
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"  # Expose NGINX on port 80
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - frontend
+      - backend
+    networks:
+      - restaurant-network
+
+networks:
+  restaurant-network:
+    driver: bridge
+
+volumes:
+  db_data:

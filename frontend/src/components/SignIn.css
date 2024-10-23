@@ -1,0 +1,37 @@
+.signin-container {
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: #800000;
+    color: white;
+    border-radius: 8px;
+}
+
+.signin-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.signin-container form input {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+.signin-container form button {
+    padding: 10px;
+    background-color: #e6f7ff;
+    color: #800000;
+    border: none;
+    cursor: pointer;
+}
+
+.google-signin {
+    padding: 10px;
+    background-color: #4285F4;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+

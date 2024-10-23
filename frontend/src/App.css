@@ -1,0 +1,101 @@
+/* Fix navbar overlap */
+body {
+  background-color: #ADD8E6; /* Light blue background */
+  margin: 0;
+  padding-top: 60px; /* Pushes content below the navbar */
+  font-family: 'Roboto', sans-serif;
+}
+h1, h2, h3 {
+  font-family: 'Poppins', sans-serif;
+  color: #800000; /* Dark red */
+}
+
+/* Updated heading for new name */
+h1 {
+  color: #8B0000;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Other CSS remains the same as above */
+
+.menu-item {
+  border: 2px solid #8B0000;
+  margin: 20px;
+  padding: 15px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  max-width: 500px;
+  /* Add this to adjust size */
+  height: auto;
+  min-height: 150px;
+}
+
+/* Adjust the size of the images */
+.menu-item img {
+  width: 120px;
+  height: 120px;
+  border-radius: 10px;
+  margin-right: 20px;
+}
+
+/* Navbar and dropdown */
+.navbar {
+  background-color: #8B0000;
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.hamburger {
+  background-color: #8B0000;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  right: 10px;
+  top: 50px;
+  z-index: 1;
+}
+
+.hamburger:hover + .dropdown-content, 
+.dropdown-content:hover {
+  display: block;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+
+
+.clear-button {
+  background-color: #8B0000;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 20px;
+}

@@ -1,0 +1,32 @@
+.faq-container {
+    margin: 20px auto;
+    max-width: 600px;
+    text-align: left;
+}
+
+.faq-item {
+    margin-bottom: 20px;
+}
+
+.faq-form {
+    margin-top: 40px;
+}
+
+.faq-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.faq-form form input, .faq-form form select, .faq-form form textarea {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+.faq-form form button {
+    padding: 10px;
+    background-color: #800000;
+    color: white;
+    border: none;
+    cursor: pointer;
+}

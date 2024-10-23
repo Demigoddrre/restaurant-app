@@ -64,3 +64,30 @@ arduino
 Copy code
 docker run -p 3000:3000 restaurant-frontend
 This will run the app inside a Docker container, making it available at http://localhost:3000.
+
+
+Setup Instructions
+Prerequisites:
+Docker
+Git
+
+How to Run the Project Locally:
+Clone the repository:
+
+
+git clone https://github.com/Demigoddrre/restaurant-app.git
+Navigate to the project directory:
+
+
+cd restaurant-app
+Build and run the Docker containers:
+
+
+docker-compose up --build
+The application should be available on:
+
+Frontend: http://localhost
+Backend API: http://localhost:5000/api/menu
+Troubleshooting:
+If you encounter a 403 Forbidden error when accessing the API or a 502 Bad Gateway error, this is due to routing issues that are currently being addressed.
+Next steps are to fix these routing issues and ensure access permissions are correctly configured.

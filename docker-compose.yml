@@ -3,15 +3,15 @@ version: '3.8'
 services:
   frontend:
     build: ./frontend
-    expose:
-      - "80"
+    ports:
+      - "3000:3000"  # Expose port 3000 to the host machine
     networks:
       - restaurant-network
 
   backend:
     build: ./backend
-    expose:
-      - "5000"
+    ports:
+      - "5000:5000"  # Expose port 5000 to the host machine
     networks:
       - restaurant-network
     environment:
@@ -28,12 +28,12 @@ services:
     networks:
       - restaurant-network
     ports:
-      - "5432:5432"
+      - "5432:5432"  # Expose PostgreSQL port to the host machine
 
   nginx:
     image: nginx:alpine
     ports:
-      - "80:80"  # Expose NGINX on port 80
+      - "80:80"  # Expose port 80 to the host machine for NGINX
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
     depends_on:

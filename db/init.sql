@@ -1,3 +1,5 @@
+\c restaurant;
+
 -- Create the Menu table
 CREATE TABLE IF NOT EXISTS menu (
     item_id SERIAL PRIMARY KEY,

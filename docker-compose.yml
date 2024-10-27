@@ -2,6 +2,7 @@ version: '3.8'
 
 services:
   frontend:
+    container_name: restaurant-client
     build: ./frontend
     ports:
       - "3000:3000"  # Expose port 3000 to the host machine
@@ -9,21 +10,25 @@ services:
       - restaurant-network
 
   backend:
+    container_name: restaurant-api
     build: ./backend
     ports:
       - "5001:5000"  # Expose container port 5000 on host port 5001 to avoid conflicts
     networks:
       - restaurant-network
     environment:
+      - FLASK_ENV="development"
       - DATABASE_URL=postgresql://postgres:password@db:5432/restaurant
 
   db:
+    container_name: restaurant-db
     image: postgres:13
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
       POSTGRES_DB: restaurant
     volumes:
+      - ${PWD}/db/init.sql:/docker-entrypoint-initdb.d/init.sql # https://hub.docker.com/_/postgres#:~:text=and%20POSTGRES_DB.-,Initialization%20scripts,-If%20you%20would
       - db_data:/var/lib/postgresql/data
     networks:
       - restaurant-network
@@ -44,7 +49,9 @@ services:
 
 networks:
   restaurant-network:
+    name: restaurant-network
     driver: bridge
 
 volumes:
   db_data:
+    driver: local

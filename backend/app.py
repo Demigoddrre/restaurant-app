@@ -1,23 +1,41 @@
 from flask import Flask, jsonify, request
 import psycopg2
 
+
 app = Flask(__name__)
+logger = app.logger
+# TODO: get from docker compose env
+logger.setLevel("INFO")
+
 
 # Connect to PostgreSQL
+# TODO: update in try catch block and add error handling
 def get_db_connection():
+    # TODO: get from docker compose env
+    host = "restaurant-db" # host will be container_name since you are using bridge network. see https://docs.docker.com/engine/network/drivers/bridge/#differences-between-user-defined-bridges-and-the-default-bridge 
+    database = "restaurant"
+    user = "postgres"
+    password = "password"
+    port = "5432"
+    
+    # Change this to your Google Cloud SQL connection later
+    logger.info("attempting database connection")
+
     conn = psycopg2.connect(
-        host='localhost',  # Change this to your Google Cloud SQL connection later
-        database='restaurant_db',
-        user='your_user',
-        password='your_password'
+        host=host,
+        database=database,
+        user=user,
+        password=password,
+        port=port
     )
+
     return conn
 
 @app.route('/api/menu')
 def get_menu():
     conn = get_db_connection()
     cur = conn.cursor()
-    cur.execute('SELECT * FROM menu;')
+    cur.execute("SELECT * FROM menu;")
     menu_items = cur.fetchall()
     cur.close()
     conn.close()
@@ -65,4 +83,6 @@ def signin():
         return jsonify({'message': 'User not found'}), 404
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    # TODO: get from docker compose env
+    port = 5001
+    app.run(host='0.0.0.0', port=port)
